@@ -1,0 +1,184 @@
+/* ============ Reset ============ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #54345e; /* بنفسجي */
+  color: #111;
+  font-size: 18px;
+}
+
+/* ============ Container ============ */
+.container {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+/* ============ Title (مع خط منقّط تحته بعرض النص) ============ */
+.title {
+  text-align: center;
+  font-size: 3rem;              /* مرن ويبقى Responsive مع الـ media queries */
+  color: #fff;
+  font-weight: 800;
+  position: relative;
+  display: inline-block;         /* علشان الخط يرتبط بعرض الكلمة */
+  left: 50%;
+  transform: translateX(-50%);
+  padding-bottom: 12px;
+  line-height: 1.2;
+}
+.title::after {
+  content: "";
+  display: block;
+  border-bottom: 3px dotted #ddd;  /* الخط المنقّط */
+  width: 100%;                      /* نفس عرض النص */
+  margin: 0 auto;
+}
+
+/* ============ Subtitle (وبرضه خط منقّط تحته بعرض النص) ============ */
+.subtitle {
+  text-align: center;
+  color: #00e676;
+  margin: 18px 0 36px;
+  font-weight: 700;
+  font-size: 1.5rem;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-bottom: 10px;
+}
+.subtitle::after {
+  content: "";
+  display: block;
+  border-bottom: 2px dotted #ddd;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ============ Form ============ */
+.task-form {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 3px 8px rgba(0,0,0,.2);
+  font-size: 18px;
+}
+.task-form label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #333;
+}
+.task-form input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+}
+.task-form input:focus {
+  border-color: #6a1b9a;
+  box-shadow: 0 0 0 3px rgba(106,27,154,.15);
+}
+
+/* زرار الإضافة */
+.submit-btn {
+  background: #d9534f;
+  color: #fff;
+  padding: 14px 26px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  font-size: 18px;
+  font-weight: 700;
+}
+.submit-btn:hover { background: #c9302c; }
+
+/* ============ Table ============ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 16px;
+}
+table th,
+table td {
+  border: 1px solid #e5e5e5;
+  padding: 14px;
+  text-align: center;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+table th {
+  background: #6a1b9a;
+  color: #fff;
+  font-size: 18px;
+  white-space: nowrap;   /* علشان Index مايتكسرش */
+}
+table tr:nth-child(even) td { background: #fafafa; }
+
+.empty {
+  text-align: center;
+  padding: 22px;
+  color: #888;
+  font-size: 16px;
+}
+
+/* ============ Buttons داخل الجدول ============ */
+.btn-group {
+  display: flex;
+  flex-direction: column; /* mobile-friendly */
+  gap: 8px;
+  align-items: center;
+}
+.btn {
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  min-width: 84px;
+  text-align: center;
+}
+.green { background: #5cb85c; }
+.blue  { background: #0275d8; }
+.red   { background: #d9534f; }
+
+/* ============ Responsive ============ */
+@media (max-width: 992px) {
+  .title { font-size: 2.6rem; }
+  .subtitle { font-size: 1.35rem; }
+}
+
+@media (max-width: 768px) {
+  body { font-size: 16px; }
+  .container { padding: 16px; }
+  .title { font-size: 2.2rem; }
+  .subtitle { font-size: 1.2rem; margin-bottom: 28px; }
+  .task-form { padding: 18px; }
+  .task-form input { font-size: 14px; padding: 12px; }
+  table th, table td { font-size: 14px; padding: 10px; }
+  .btn { min-width: 76px; font-size: 12px; padding: 7px 10px; }
+}
+
+@media (max-width: 480px) {
+  .title { font-size: 1.9rem; }
+  .subtitle { font-size: 1.05rem; }
+  .btn-group { flex-direction: row; gap: 6px; } /* الأزرار جنب بعض على الموبايل */
+  .btn { min-width: auto; padding: 6px 10px; font-size: 12px; }
+}
