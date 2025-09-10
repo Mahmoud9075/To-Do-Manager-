@@ -1,4 +1,4 @@
-/* ============ Reset ============ */
+
 * {
   margin: 0;
   padding: 0;
@@ -7,26 +7,25 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #54345e; /* بنفسجي */
+  background-color: #54345e; 
   color: #111;
   font-size: 18px;
 }
 
-/* ============ Container ============ */
 .container {
   max-width: 1100px;
   margin: 20px auto;
   padding: 20px;
 }
 
-/* ============ Title (مع خط منقّط تحته بعرض النص) ============ */
+
 .title {
   text-align: center;
-  font-size: 3rem;              /* مرن ويبقى Responsive مع الـ media queries */
+  font-size: 3rem;              
   color: #fff;
   font-weight: 800;
   position: relative;
-  display: inline-block;         /* علشان الخط يرتبط بعرض الكلمة */
+  display: inline-block;         
   left: 50%;
   transform: translateX(-50%);
   padding-bottom: 12px;
@@ -35,12 +34,11 @@ body {
 .title::after {
   content: "";
   display: block;
-  border-bottom: 3px dotted #ddd;  /* الخط المنقّط */
-  width: 100%;                      /* نفس عرض النص */
+  border-bottom: 3px dotted #ddd;  
+  width: 100%;                      
   margin: 0 auto;
 }
-
-/* ============ Subtitle (وبرضه خط منقّط تحته بعرض النص) ============ */
+ 
 .subtitle {
   text-align: center;
   color: #00e676;
@@ -61,7 +59,7 @@ body {
   margin: 0 auto;
 }
 
-/* ============ Form ============ */
+
 .task-form {
   background: #fff;
   padding: 25px;
@@ -90,7 +88,7 @@ body {
   box-shadow: 0 0 0 3px rgba(106,27,154,.15);
 }
 
-/* زرار الإضافة */
+
 .submit-btn {
   background: #d9534f;
   color: #fff;
@@ -105,7 +103,7 @@ body {
 }
 .submit-btn:hover { background: #c9302c; }
 
-/* ============ Table ============ */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -127,7 +125,7 @@ table th {
   background: #6a1b9a;
   color: #fff;
   font-size: 18px;
-  white-space: nowrap;   /* علشان Index مايتكسرش */
+  white-space: nowrap;  
 }
 table tr:nth-child(even) td { background: #fafafa; }
 
@@ -138,10 +136,10 @@ table tr:nth-child(even) td { background: #fafafa; }
   font-size: 16px;
 }
 
-/* ============ Buttons داخل الجدول ============ */
+*/
 .btn-group {
   display: flex;
-  flex-direction: column; /* mobile-friendly */
+  flex-direction: column; 
   gap: 8px;
   align-items: center;
 }
@@ -159,7 +157,7 @@ table tr:nth-child(even) td { background: #fafafa; }
 .blue  { background: #0275d8; }
 .red   { background: #d9534f; }
 
-/* ============ Responsive ============ */
+
 @media (max-width: 992px) {
   .title { font-size: 2.6rem; }
   .subtitle { font-size: 1.35rem; }
@@ -179,6 +177,6 @@ table tr:nth-child(even) td { background: #fafafa; }
 @media (max-width: 480px) {
   .title { font-size: 1.9rem; }
   .subtitle { font-size: 1.05rem; }
-  .btn-group { flex-direction: row; gap: 6px; } /* الأزرار جنب بعض على الموبايل */
+  .btn-group { flex-direction: row; gap: 6px; } 
   .btn { min-width: auto; padding: 6px 10px; font-size: 12px; }
 }
