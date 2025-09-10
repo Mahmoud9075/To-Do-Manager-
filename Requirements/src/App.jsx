@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
+import "./App.css";
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [filter, setFilter] = useState("ALL");
 
   // load tasks from localStorage
   useEffect(() => {
-    const stored = localStorage.getItem("tasks");
-    if (stored) {
-      setTasks(JSON.parse(stored));
+    try {
+      const stored = localStorage.getItem("tasks");
+      if (stored) setTasks(JSON.parse(stored));
+    } catch (err) {
+      console.error("Error reading tasks:", err);
     }
   }, []);
 
   // save tasks
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    try {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    } catch (err) {
+      console.error("Error saving tasks:", err);
+    }
   }, [tasks]);
 
   const addTask = () => {
@@ -27,42 +35,53 @@ function App() {
       description,
       status: "Pending",
     };
-    setTasks([...tasks, newTask]);
+    setTasks((prev) => [...prev, newTask]);
     setTitle("");
     setDescription("");
   };
 
   const toggleDone = (id) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id
-          ? { ...task, status: task.status === "Pending" ? "Done" : "Pending" }
-          : task
+    setTasks((prev) =>
+      prev.map((t) =>
+        t.id === id
+          ? { ...t, status: t.status === "Pending" ? "Done" : "Pending" }
+          : t
       )
     );
   };
 
   const editTask = (id) => {
-    const t = tasks.find((task) => task.id === id);
-    if (t) {
-      setTitle(t.title);
-      setDescription(t.description);
-      setTasks(tasks.filter((task) => task.id !== id));
-    }
+    setTasks((prev) => {
+      const t = prev.find((task) => task.id === id);
+      if (t) {
+        setTitle(t.title);
+        setDescription(t.description);
+      }
+      return prev.filter((task) => task.id !== id);
+    });
   };
 
   const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+    setTasks((prev) => prev.filter((t) => t.id !== id));
   };
+
+  // فلترة
+  const filteredTasks = tasks.filter((t) => {
+    if (filter === "ALL") return true;
+    if (filter === "DONE") return t.status === "Done";
+    if (filter === "PENDING") return t.status === "Pending";
+    return true;
+  });
 
   return (
     <div className="container">
-      {/* العنوان في النص */}
+      {/* العنوان */}
       <div className="title-wrapper">
         <h1 className="title">To-Do Manager</h1>
       </div>
       <p className="subtitle">✔ Manage your tasks easily ✔</p>
 
+      {/* الفورم */}
       <div className="task-form">
         <label>Task Title</label>
         <input
@@ -85,8 +104,29 @@ function App() {
         </button>
       </div>
 
-      <div className="form-separator"></div>
+      {/* الفلترة */}
+      <div className="filter-buttons">
+        <button
+          className={filter === "ALL" ? "active" : ""}
+          onClick={() => setFilter("ALL")}
+        >
+          الجميع
+        </button>
+        <button
+          className={filter === "DONE" ? "active" : ""}
+          onClick={() => setFilter("DONE")}
+        >
+          منتهي
+        </button>
+        <button
+          className={filter === "PENDING" ? "active" : ""}
+          onClick={() => setFilter("PENDING")}
+        >
+          قيد الانتظار
+        </button>
+      </div>
 
+      {/* الجدول */}
       <table>
         <thead>
           <tr>
@@ -98,14 +138,14 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {tasks.length === 0 ? (
+          {filteredTasks.length === 0 ? (
             <tr>
               <td colSpan="5" className="empty">
                 No tasks yet
               </td>
             </tr>
           ) : (
-            tasks.map((task, index) => (
+            filteredTasks.map((task, index) => (
               <tr key={task.id}>
                 <td>{index + 1}</td>
                 <td>{task.title}</td>
