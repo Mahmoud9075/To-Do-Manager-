@@ -1,62 +1,34 @@
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #54345e; 
-  color: #111;
-  font-size: 18px;
-}
-
 .container {
   max-width: 1100px;
   margin: 20px auto;
   padding: 20px;
-}
 
-
-.title {
+.title-wrapper {
   text-align: center;
-  font-size: 3rem;              
+}
+.title {
+  font-size: 3rem;
   color: #fff;
-  font-weight: 800;
+  font-weight: bold;
+  display: inline-block;
   position: relative;
-  display: inline-block;         
-  left: 50%;
-  transform: translateX(-50%);
   padding-bottom: 12px;
-  line-height: 1.2;
 }
 .title::after {
   content: "";
   display: block;
-  border-bottom: 3px dotted #ddd;  
-  width: 100%;                      
-  margin: 0 auto;
+  border-bottom: 3px dotted #ddd;
+  width: 100%;
+  margin: 12px auto 0 auto;
 }
- 
+
 .subtitle {
   text-align: center;
-  color: #00e676;
+  color: #640808;
   margin: 18px 0 36px;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 1.5rem;
-  position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
-  padding-bottom: 10px;
-}
-.subtitle::after {
-  content: "";
-  display: block;
-  border-bottom: 2px dotted #ddd;
-  width: 100%;
-  margin: 0 auto;
 }
 
 
@@ -65,12 +37,12 @@ body {
   padding: 25px;
   border-radius: 12px;
   margin-bottom: 30px;
-  box-shadow: 0 3px 8px rgba(0,0,0,.2);
+  box-shadow: 0 3px 8px rgba(0,0,0,.25);
   font-size: 18px;
 }
 .task-form label {
   display: block;
-  font-weight: 700;
+  font-weight: bold;
   margin-bottom: 8px;
   color: #333;
 }
@@ -78,17 +50,14 @@ body {
   width: 100%;
   padding: 14px;
   margin-bottom: 20px;
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 16px;
-  outline: none;
 }
 .task-form input:focus {
   border-color: #6a1b9a;
   box-shadow: 0 0 0 3px rgba(106,27,154,.15);
 }
-
-
 .submit-btn {
   background: #d9534f;
   color: #fff;
@@ -114,21 +83,18 @@ table {
 }
 table th,
 table td {
-  border: 1px solid #e5e5e5;
+  border: 1px solid #ddd;
   padding: 14px;
   text-align: center;
-  word-wrap: break-word;
   white-space: normal;
-  overflow-wrap: break-word;
+  word-break: break-word;
 }
 table th {
-  background: #6a1b9a;
+  background: #3d114c;
   color: #fff;
   font-size: 18px;
-  white-space: nowrap;  
 }
 table tr:nth-child(even) td { background: #fafafa; }
-
 .empty {
   text-align: center;
   padding: 22px;
@@ -136,11 +102,11 @@ table tr:nth-child(even) td { background: #fafafa; }
   font-size: 16px;
 }
 
-*/
+
 .btn-group {
   display: flex;
-  flex-direction: column; 
-  gap: 8px;
+  flex-direction: column;
+  gap: 6px;
   align-items: center;
 }
 .btn {
@@ -158,25 +124,44 @@ table tr:nth-child(even) td { background: #fafafa; }
 .red   { background: #d9534f; }
 
 
-@media (max-width: 992px) {
-  .title { font-size: 2.6rem; }
-  .subtitle { font-size: 1.35rem; }
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
 }
+.filter-buttons button {
+  background: #3d114c;
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.filter-buttons button:hover {
+  background: red;
+  transform: scale(1.05);
+}
+.filter-buttons .active {
+  background: #3d114c;
+}
+
 
 @media (max-width: 768px) {
-  body { font-size: 16px; }
-  .container { padding: 16px; }
   .title { font-size: 2.2rem; }
-  .subtitle { font-size: 1.2rem; margin-bottom: 28px; }
-  .task-form { padding: 18px; }
-  .task-form input { font-size: 14px; padding: 12px; }
+  .subtitle { font-size: 1.2rem; }
+  .task-form { padding: 15px; }
+  .task-form input { font-size: 14px; padding: 10px; }
   table th, table td { font-size: 14px; padding: 10px; }
-  .btn { min-width: 76px; font-size: 12px; padding: 7px 10px; }
+  .btn { min-width: 70px; font-size: 12px; }
 }
-
 @media (max-width: 480px) {
-  .title { font-size: 1.9rem; }
-  .subtitle { font-size: 1.05rem; }
-  .btn-group { flex-direction: row; gap: 6px; } 
+  .title { font-size: 1.8rem; }
+  .subtitle { font-size: 1rem; }
+  .task-form input { font-size: 12px; padding: 8px; }
+  table th, table td { font-size: 12px; padding: 8px; }
+  .btn-group { flex-direction: row; gap: 4px; }
   .btn { min-width: auto; padding: 6px 10px; font-size: 12px; }
 }
